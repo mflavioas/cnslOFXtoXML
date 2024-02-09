@@ -54,7 +54,6 @@ namespace cnslOFXtoXML.source
             try
             {
                 Configuracoes? configuracoes = LerArqConfig();
-                // Ler o conteúdo do arquivo OFX
                 string[] conteudoOFX = File.ReadAllLines(arquivoOFX);
                 bool arqOFX = false;
                 StringBuilder stringBuilder = new();
@@ -67,7 +66,6 @@ namespace cnslOFXtoXML.source
                         stringBuilder.AppendLine(RetornaLinhaXML(linha, configuracoes));
                     }
                 }
-                // Salvar o XML em um novo arquivo
                 string novoArquivoXML = Path.ChangeExtension(arquivoOFX, ".xml");
                 if (File.Exists(novoArquivoXML))
                     File.Delete(novoArquivoXML);

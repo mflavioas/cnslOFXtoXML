@@ -43,7 +43,7 @@ namespace cnslOFXtoXML.controller
                     Tipo = trnscOFX.TRNTYPE,
                     Descricao = trnscOFX.MEMO,
                     Valor = trnscOFX.TRNAMT,
-                    Categoria = categoria.RetornaCategoria(trnscOFX.MEMO)
+                    Categoria = categoria.RetornaCategoria(trnscOFX.MEMO.ToUpper())
                 });
             }
             File.Delete(caminhoArquivoXML);

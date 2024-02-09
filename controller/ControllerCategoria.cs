@@ -34,7 +34,7 @@ namespace cnslOFXtoXML.controller
             {
                 foreach (string valor in categoria.Valores.Split(';'))
                 {
-                    if (Descricao.Contains(valor))
+                    if (Descricao.Contains(valor.Trim().ToUpper()))
                         return categoria.Descricao;
                 }
             }
