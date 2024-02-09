@@ -6,3 +6,8 @@
 /obj
 /bin/Debug/net8.0
 /Properties/launchSettings.json
+/bin/Release/net8.0/app.publish
+/bin/publish
+/bin/Release/net8.0/publish
+/bin/Release/net8.0
+/Properties/PublishProfiles
