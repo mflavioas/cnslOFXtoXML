@@ -10,9 +10,10 @@ namespace cnslOFXtoXML.models
         public DateTime Data { get; set; }
         public double Valor { get; set; }
         public string Descricao { get; set; }
+        public string Categoria { get; set; }
         public string GetLinhaCSV()
         {  
-            return string.Concat(Id, ";", Tipo, ";", Data.ToString("ddMMyyyy"), ";", Descricao, ";",Valor);
+            return string.Concat(Id, ";", Tipo, ";", Data.ToString("ddMMyyyy"), ";", Descricao, ";", Categoria, ";", Valor);
         }
     }
     public class Finance

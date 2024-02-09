@@ -28,6 +28,7 @@ namespace cnslOFXtoXML.controller
             {
                 return finance;
             }
+            ControllerCategoria categoria = new();
             finance.Id = ofx.BANKMSGSRSV1.STMTTRNRS.STMTRS.BANKACCTFROM.BANKID;
             finance.Banco = ofx.SIGNONMSGSRSV1.SONRS.FI.ORG;
             foreach (STMTTRN trnscOFX in ofx.BANKMSGSRSV1.STMTTRNRS.STMTRS.BANKTRANLIST.STMTTRN.Where(x =>
@@ -41,7 +42,8 @@ namespace cnslOFXtoXML.controller
                     Data = trnscOFX.DTPOSTED,
                     Tipo = trnscOFX.TRNTYPE,
                     Descricao = trnscOFX.MEMO,
-                    Valor = trnscOFX.TRNAMT
+                    Valor = trnscOFX.TRNAMT,
+                    Categoria = categoria.RetornaCategoria(trnscOFX.MEMO)
                 });
             }
             File.Delete(caminhoArquivoXML);
