@@ -11,13 +11,13 @@ namespace cnslOFXtoXML.models
         public double Valor { get; set; }
         public string Descricao { get; set; }
         public string Categoria { get; set; }
-    }
-    public class Finance
-    {
-        public string Id { get; set; }
+        public string NrBco { get; set; }
         public string Banco { get; set; }
         public DateTime DataFechamento { get; set; }
         public DateTime DataVencimento { get; set; }
+    }
+    public class Finance
+    {
         public List<Transacao> Transacoes { get; set; }
     }
 }
