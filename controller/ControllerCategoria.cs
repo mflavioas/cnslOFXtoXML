@@ -1,44 +1,43 @@
 ﻿using cnslOFXtoXML.models;
-using System.Drawing;
 using System.Xml.Serialization;
 
 namespace cnslOFXtoXML.controller
 {
-    public class ControllerCategoria
+    public class ControllerParametros
     {
-        private Categorias Categorias { get; set; }
+        public Parametros parametros { get; set; }
 
-        public ControllerCategoria()
+        public ControllerParametros()
         {
-            Categorias = LerArqCategoria();
+            parametros = LerArqCategoria();
         }
-        private Categorias LerArqCategoria()
+        private Parametros LerArqCategoria()
         {
-            string caminhoArquivo = Path.Combine(Directory.GetCurrentDirectory(), "config\\Categorias.xml");
+            string caminhoArquivo = Path.Combine(Directory.GetCurrentDirectory(), "config\\Parametros.xml");
             try
             {
-                XmlSerializer serializer = new(typeof(Categorias));
+                XmlSerializer serializer = new(typeof(Parametros));
                 using StreamReader reader = new(caminhoArquivo);
-                return serializer.Deserialize(reader) as Categorias;
+                return serializer.Deserialize(reader) as Parametros;
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Ocorreu um erro ao ler o arquivo de categorias: " + ex.Message);
             }
-            return new Categorias();
+            return new Parametros();
         }
 
         public string RetornaCategoria(string Descricao)
         {
-            foreach (Categoria categoria in Categorias.categoria) 
+            foreach (Categoria categoria in parametros.Categorias) 
             {
                 foreach (string valor in categoria.Valores.Split(';'))
                 {
-                    if (Descricao.Contains(valor.Trim().ToUpper()))
+                    if (Descricao.Contains(valor.Trim(), StringComparison.CurrentCultureIgnoreCase))
                         return categoria.Descricao;
                 }
             }
-            return "NDF";
+            return "Indefinido";
         }
     }
 }

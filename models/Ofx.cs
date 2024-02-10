@@ -54,7 +54,7 @@ namespace cnslOFXtoXML.models
     {
 
         [XmlElement(ElementName = "BANKID")]
-        public int BANKID { get; set; }
+        public string BANKID { get; set; }
 
         [XmlElement(ElementName = "ACCTID")]
         public int ACCTID { get; set; }
@@ -77,7 +77,7 @@ namespace cnslOFXtoXML.models
         public double TRNAMT { get; set; }
 
         [XmlElement(ElementName = "FITID")]
-        public int FITID { get; set; }
+        public string FITID { get; set; }
 
         [XmlElement(ElementName = "CHECKNUM")]
         public int CHECKNUM { get; set; }
@@ -153,6 +153,53 @@ namespace cnslOFXtoXML.models
         public STMTTRNRS STMTTRNRS { get; set; }
     }
 
+    [XmlRoot(ElementName = "CCACCTFROM")]
+    public class CCACCTFROM
+    {
+
+        [XmlElement(ElementName = "ACCTID")]
+        public string ACCTID { get; set; }
+    }
+
+    [XmlRoot(ElementName = "CCSTMTRS")]
+    public class CCSTMTRS
+    {
+
+        [XmlElement(ElementName = "CURDEF")]
+        public string CURDEF { get; set; }
+
+        [XmlElement(ElementName = "CCACCTFROM")]
+        public CCACCTFROM CCACCTFROM { get; set; }
+
+        [XmlElement(ElementName = "BANKTRANLIST")]
+        public BANKTRANLIST BANKTRANLIST { get; set; }
+
+        [XmlElement(ElementName = "LEDGERBAL")]
+        public LEDGERBAL LEDGERBAL { get; set; }
+    }
+
+    [XmlRoot(ElementName = "CCSTMTTRNRS")]
+    public class CCSTMTTRNRS
+    {
+
+        [XmlElement(ElementName = "TRNUID")]
+        public string TRNUID { get; set; }
+
+        [XmlElement(ElementName = "STATUS")]
+        public STATUS STATUS { get; set; }
+
+        [XmlElement(ElementName = "CCSTMTRS")]
+        public CCSTMTRS CCSTMTRS { get; set; }
+    }
+
+    [XmlRoot(ElementName = "CREDITCARDMSGSRSV1")]
+    public class CREDITCARDMSGSRSV1
+    {
+
+        [XmlElement(ElementName = "CCSTMTTRNRS")]
+        public CCSTMTTRNRS CCSTMTTRNRS { get; set; }
+    }
+
     [XmlRoot(ElementName = "OFX")]
     public class OFX
     {
@@ -162,5 +209,8 @@ namespace cnslOFXtoXML.models
 
         [XmlElement(ElementName = "BANKMSGSRSV1")]
         public BANKMSGSRSV1 BANKMSGSRSV1 { get; set; }
+
+        [XmlElement(ElementName = "CREDITCARDMSGSRSV1")]
+        public CREDITCARDMSGSRSV1 CREDITCARDMSGSRSV1 { get; set; }
     }
 }

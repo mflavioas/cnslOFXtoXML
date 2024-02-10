@@ -3,7 +3,7 @@ using System.Text;
 using System.Xml.Serialization;
 using cnslOFXtoXML.models;
 
-namespace cnslOFXtoXML.source
+namespace cnslOFXtoXML
 {
     public class ControllerOFX
     {
@@ -70,8 +70,6 @@ namespace cnslOFXtoXML.source
                 if (File.Exists(novoArquivoXML))
                     File.Delete(novoArquivoXML);
                 File.WriteAllText(novoArquivoXML, stringBuilder.ToString());
-                //string ArquivoXSD = Path.ChangeExtension(arquivoOFX, ".xsd");
-                //File.Copy(Path.Combine(Directory.GetCurrentDirectory(), "config\\EsquemaPadrao.xml"), ArquivoXSD, true);
                 Console.WriteLine("Arquivo OFX convertido com sucesso para XML: " + novoArquivoXML);
                 return novoArquivoXML;
             }

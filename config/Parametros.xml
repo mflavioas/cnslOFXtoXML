@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Parametros>
+  <categoria descricao="Mercado" valores="CARREFOUR;COMPRE BEM;TROQUE BEM;SILDENOR SILVA PERE;Lopes;Assai;Acougue;Perfumaria;Nobreza Da Carne;Sonda;MERCAD;ATACADAO;ESSENTRIGO;IVALDO MUNIZ;Panificadora;EMPORIO;REI DAVI;ATACADO ESPERANCA;BARBOSA;PAES E DOCES;OXXO;CARREF GUARULHOS"/>
+  <categoria descricao="Taxas" valores="Anuidade;JUROS;IOF;Máximo contratual"/>
+  <categoria descricao="Fatura" valores="REALIZE CREDITO;PAGAMENTO CARTAO CREDITO BCE;NU PAGAMENTOS SA"/>
+  <categoria descricao="Saude" valores="INTERMEDICA;Stella Maris;Oticavejamais;Youse Vida;Dojo"/>
+  <categoria descricao="Luz" valores="CONTA LUZ;EDP"/>
+  <categoria descricao="Farmacia" valores="RUAN YUN SAN COSMET;FarmaCondeLoja;MultiFarma;Boticario;Ultrafarma;Pague Menos;Raia;MIYAFARMA;DROGARIA;Amplafarma;PROMOFARMA"/>
+  <categoria descricao="Educacao" valores="OISA TECNOLOGIA;Escola Coracao De Je;Kalunga;Colegio Vila Fatima;IUGU INSTITUICAO;INSTITUTO EDUCACION;EDVAC SERVICOS EDUCACIONA"/>
+  <categoria descricao="PET" valores="PETZ;Cobasi;Petshopdoamigao;Avicolaoliveira;RACAO PET DOG;ESQUILOS;AmigaoDogs;ClinicaVetVida;PIX ENVIADO MARIA JESSICA"/>
+  <categoria descricao="Carro" valores="POSTO.2634;IPVA-CANAIS;POSTO DE COMBUSTIVE;Tamoios;Ecopista;TAPECARIA ESTEVAM;GST ESTETICA AUTOMO;Posto Chama;Combustiveis;Youse Auto;Youse Youse;Petrodutra;Autopostomauiltda;Drive Guarulhos;AUTO POSTO;LIDER PARKING;VIAOESTE;CONECTCAR;ESTACIONAMEN;AUTOMOTIVO;PORTO SEGURO CARTOES;RODOANEL;PARK;Autopostovila"/>
+  <categoria descricao="Evandro" valores="PIX ENVIADO Anderson Alves;Anderson Alves"/>
+  <categoria descricao="Aluguel" valores="PIX ENVIADO Real imveis;Real imveis"/>
+  <categoria descricao="Mesada" valores="PIX ENVIADO SOFIA;SOFIA ALVES;PIX ENVIADO Patricia;Patricia de Almeida"/>
+  <categoria descricao="Apartamento" valores="MARCIO ALVES;CONDOMINIO RESIDENCIAL;HABITACAO"/>
+  <categoria descricao="Guloseimas" valores="BOM BAIANO;IFOOD;NANYTAPIOCAEAC;101coxinhas;Burger King;PIZZARIA;Churrosdaline;CAFETERIA PEDACO"/>
+  <categoria descricao="Familia" valores="Hmnfahxnfs;Shopee;Decolar;Shein;Iron Hamburgue;Brunadealmeidafer;SESC GUARULHOS;PONTO GARDEN;CHOCOLATE COM PIMEN;Sheinbr;Torra Torra;Aliexpress;Trocafone;Vans Outlet;Puma Sports;LOJA DO MICRO"/>
+  <categoria descricao="Agua" valores="SABESP;SANEAMENTO BASICO"/>
+  <categoria descricao="Internet" valores="CLARO;VIVO FIXO;TELEFONICA;CLARO SA;VIVO-SP"/>
+  <categoria descricao="Assinaturas" valores="Amazon Digital;Amazon Prime Canais;Amazon Digital Br;Loja Online Claro;Youtubepremium;Disney Plus;Helphbomaxcom;Apple;Iza Seguros;Vivo Easy;Conta Vivo;Google Play Pass;NETFLIX"/>
+  <categoria descricao="Transporte" valores="99app;UBER .TRI"/>
+  <categoria descricao="Presentes" valores="Ppro *Microsoft;Presentes;Brinquedos;Ri Happy;Steam;Parakids;Rpgmaisbarato"/>
+  <categoria descricao="Casa" valores="TOTAL GARDEN;Mkestofadose;Chaveiroramos;Madeiramadei;Joli Materiais;Deposito Cardoso;Mobly;Magazineluiz;Leroy Merlin;Eletrica Takei;Anderson Rod"/>
+  <categoria descricao="Tabacaria" valores="Mahdi Farhat;MUHAMMUD ADNAN;Ozzlaugetabacaria;Hookah"/>
+  <categoria descricao="Parcelado" valores="Parcelamento Fatura;Parc.Saldo De Fatura"/>
+  <categoria descricao="Detalhes Fatura" valores="Subtotal;Saldo anterior"/>
+  <categoria descricao="Transferencias" valores="41168767"/>
+  <categoria descricao="Recebimentos" valores="PATRICIA ALMEIDA;LUDMILLA COELHO;PIX RECEBIDO;LIQUIDO DE VENCIMENTO CNPJ 003104581000108"/>
+  <categoria descricao="Rendimento" valores="REMUNERACAO"/>
+  <categoria descricao="Terreno" valores="INOVA TERRA"/>
+  <categoria descricao="COREN" valores="CONSELHO REGIONAL DE ENFE"/>
+  <banco descricao="Nubank" codigo="260" diavcto="20" tparq="OFX" ignorar="" />
+  <banco descricao="Santander" codigo="033" diavcto="01" tparq="XLS" ignorar="Pagamento De Fatura"/>
+</Parametros>
