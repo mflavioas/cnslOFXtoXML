@@ -80,9 +80,9 @@ namespace cnslOFXtoXML.controller
             return lstFinances;
         }
 
-        public static void GravarArquivoExcel(List<Finance> Lstfinance)
+        public static void GravarArquivoExcel(List<Finance> Lstfinance, string DirOutput)
         {
-            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Financeiro.xlsx");
+            string filePath = Path.Combine(DirOutput, $"Financeiro_{DateTime.Now:yyyyMMddfff}.xlsx");
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using (ExcelPackage package = new(new FileInfo(filePath)))
             {

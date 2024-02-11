@@ -1,4 +1,6 @@
 ﻿using cnslOFXtoXML.models;
+using System.Drawing;
+using System.Drawing.Text;
 using System.Xml.Serialization;
 
 namespace cnslOFXtoXML.controller
@@ -80,15 +82,31 @@ namespace cnslOFXtoXML.controller
             return finance;
         }
 
-        private static void GerarArquivoXMLUnificado(List<Finance> lstFinance)
+        private static void GerarArquivoXMLUnificado(List<Finance> lstFinance, string DirOutput)
         {
             XmlSerializer serializer = new(typeof(List<Finance>));
-            using StreamWriter streamWriter = new(Path.Combine(Directory.GetCurrentDirectory(), "Financeiro.xml"));
+            using StreamWriter streamWriter = new(Path.Combine(DirOutput, $"Base_Financeiro_{DateTime.Now:yyyyMMddfff}.xml"));
             serializer.Serialize(streamWriter, lstFinance);
         }
 
-        public static void UnificarArquivos(string[] LstArquivos)
+        public static void UnificarArquivos(string[] LstParametrosEntrada)
         {
+            List<string> LstArquivos = [];
+            foreach (string parentr in LstParametrosEntrada)
+            {
+                if (File.Exists(parentr))
+                    LstArquivos.Add(parentr);
+                else if (Directory.Exists(parentr))
+                {
+                    foreach (string arqv in Directory.GetFiles(parentr))
+                    {
+                        LstArquivos.Add(arqv);
+                    }
+                }
+            }
+            string OutPut = Path.Combine(Directory.GetCurrentDirectory(), "output");
+            if (!Directory.Exists(OutPut))
+                Directory.CreateDirectory(OutPut);
             List<Finance> lstFinance = [];
             ControllerParametros parametros = new();
             foreach (string arquivo in LstArquivos)
@@ -101,12 +119,17 @@ namespace cnslOFXtoXML.controller
                         lstFinance.Add(ConverteOFXToFinance(arqXML, parametros));
                     }
                 }
+                else if (Path.GetExtension(arquivo).Equals(".XML", StringComparison.CurrentCultureIgnoreCase))
+                {
+                    lstFinance.AddRange(ControllerFinanceXML.LerArqXMLUnificado(arquivo));
+                }
                 else
                 {
                     lstFinance.AddRange(ControllerFaturaExcel.CarregaArqExcelSantander(arquivo, parametros));
                 }
             }
-            ControllerFaturaExcel.GravarArquivoExcel(lstFinance);
+            GerarArquivoXMLUnificado(lstFinance, OutPut);
+            ControllerFaturaExcel.GravarArquivoExcel(lstFinance, OutPut);
         }
     }
 }
