@@ -1,4 +1,11 @@
-﻿using cnslOFXtoXML.models;
+﻿// <summary>
+/// Classe controle para modelo de configurações do Banco e Categorias do arquivo financeiro.
+/// </summary>
+/// <author>Flavio Alves</author>
+/// <created>2024-02-12</created>
+/// <version>1.0</version>
+
+using cnslOFXtoXML.models;
 using System.Xml.Serialization;
 
 namespace cnslOFXtoXML.controller
@@ -22,22 +29,23 @@ namespace cnslOFXtoXML.controller
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Ocorreu um erro ao ler o arquivo de categorias: " + ex.Message);
+                Console.WriteLine("Ocorreu um erro ao ler o arquivo de parametros: " + ex.Message);
             }
             return new Parametros();
         }
 
-        public string RetornaCategoria(string Descricao)
+        public Categoria RetornaCategoria(string Descricao, string CodigoBanco)
         {
-            foreach (Categoria categoria in parametros.Categorias) 
+            Banco banco = parametros.Bancos.FirstOrDefault(b => b.Codigo == CodigoBanco);
+            foreach (Categoria categoria in banco.Categorias)
             {
                 foreach (string valor in categoria.Valores.Split(';'))
                 {
                     if (Descricao.Contains(valor.Trim(), StringComparison.CurrentCultureIgnoreCase))
-                        return categoria.Descricao;
+                        return categoria;
                 }
             }
-            return "Indefinido";
+            return new Categoria { Descricao = "Indefinido", Grupo = "NDF" };
         }
     }
 }

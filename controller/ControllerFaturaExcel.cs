@@ -1,6 +1,12 @@
-﻿using cnslOFXtoXML.models;
+﻿// <summary>
+/// Classe controller para capturar arquivo Santander xlsx da opção copiar fatura no site e colado direto no excel em todas as abas mensais.
+/// </summary>
+/// <author>Flavio Alves</author>
+/// <created>2024-02-12</created>
+/// <version>1.0</version>
+
+using cnslOFXtoXML.models;
 using OfficeOpenXml;
-using System;
 
 namespace cnslOFXtoXML.controller
 {
@@ -9,15 +15,15 @@ namespace cnslOFXtoXML.controller
         public static List<Finance> CarregaArqExcelSantander(string arquivo, ControllerParametros ConfigParametros)
         {
             List<Finance> lstFinances = [];
-            Banco banco = ConfigParametros.parametros.Bancos.FirstOrDefault(b => b.TipoArquivo == "XLS");
+            Banco banco = ConfigParametros.parametros.Bancos.FirstOrDefault(b => b.Codigo == "033");
             if (File.Exists(arquivo))
             {
-                Console.WriteLine($"Registros da planilha: {arquivo}");
+                Console.WriteLine($"Carregando registros da planilha: {arquivo}");
                 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
                 using var package = new ExcelPackage(new FileInfo(arquivo));
                 foreach (var sheet in package.Workbook.Worksheets)
                 {
-                    Console.WriteLine($"Registros na aba: {sheet.Name}");
+                    Console.WriteLine($"Lendo registros na aba: {sheet.Name}");
                     Finance finance = new() { Transacoes = [] };
                     string[] ignorar = banco.Ignorar.Split(";");
                     int Base0Linha = 0;
@@ -41,6 +47,7 @@ namespace cnslOFXtoXML.controller
                             }
                             if (Convert.ToDateTime(sheet.Cells[row, 1].Value) > DateTime.Now.AddYears(-5) && !string.IsNullOrWhiteSpace(descricao))
                             {
+                                Categoria categoria = ConfigParametros.RetornaCategoria(descricao, banco.Codigo);
                                 finance.Transacoes.Add(new()
                                 {
                                     NrBco = banco.Codigo,
@@ -50,7 +57,8 @@ namespace cnslOFXtoXML.controller
                                     Data = Convert.ToDateTime(sheet.Cells[row, 1].Value),
                                     Descricao = descricao,
                                     Valor = Convert.ToDouble(vlr) * -1,
-                                    Categoria = ConfigParametros.RetornaCategoria(descricao)
+                                    Grupo = categoria.Grupo,
+                                    Categoria = categoria.Descricao
                                 });
                             }
                         }
@@ -71,6 +79,7 @@ namespace cnslOFXtoXML.controller
                     }
                     lstFinances.Add(finance);
                 }
+                Console.WriteLine($"Arquivo({arquivo}) convertido com sucesso para XML");
                 File.Delete(Path.ChangeExtension(arquivo, ".xml"));
             }
             else
@@ -80,42 +89,51 @@ namespace cnslOFXtoXML.controller
             return lstFinances;
         }
 
-        public static void GravarArquivoExcel(List<Finance> Lstfinance, string DirOutput)
+        public static void GravarArquivoExcel(List<Finance> lstFinance, string DirOutput)
         {
-            string filePath = Path.Combine(DirOutput, $"Financeiro_{DateTime.Now:yyyyMMddfff}.xlsx");
+            if (lstFinance is null)
+            {
+                return;
+            }
+
+            string filePath = Path.Combine(DirOutput, $"Financeiro_{DateTime.Now:yyyyMMdd_HHmmfff}.xlsx");
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using (ExcelPackage package = new(new FileInfo(filePath)))
             {
                 ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Financeiro");
                 int row = 1;
+                int col = 1;
                 // Escreve os cabeçalhos
-                worksheet.Cells[row, 1].Value = "NrBco";
-                worksheet.Cells[row, 2].Value = "Banco";
-                worksheet.Cells[row, 3].Value = "Tipo";
-                worksheet.Cells[row, 4].Value = "NrDoc";
-                worksheet.Cells[row, 5].Value = "Data";
-                worksheet.Cells[row, 6].Value = "Valor";
-                worksheet.Cells[row, 7].Value = "Descrição";
-                worksheet.Cells[row, 8].Value = "Categoria";
-                worksheet.Cells[row, 9].Value = "Data Fechamento";
-                worksheet.Cells[row, 10].Value = "Data Vencimento";
+                worksheet.Cells[row, col++].Value = "NrBco";
+                worksheet.Cells[row, col++].Value = "Banco";
+                worksheet.Cells[row, col++].Value = "Tipo";
+                worksheet.Cells[row, col++].Value = "NrDoc";
+                worksheet.Cells[row, col++].Value = "Data Movimento";
+                worksheet.Cells[row, col++].Value = "Valor";
+                worksheet.Cells[row, col++].Value = "Descrição";
+                worksheet.Cells[row, col++].Value = "Grupo";
+                worksheet.Cells[row, col++].Value = "Categoria";
+                worksheet.Cells[row, col++].Value = "Data Fechamento";
+                worksheet.Cells[row, col++].Value = "Data Vencimento";
 
                 row++;
-                foreach (Finance finance in Lstfinance)
+                // Preenche os dados detalhe
+                foreach (Finance finance in lstFinance)
                 {
-                    // Preenche os dados detalhe
                     foreach (Transacao transacao in finance.Transacoes)
                     {
-                        worksheet.Cells[row, 1].Value = transacao.NrBco;
-                        worksheet.Cells[row, 2].Value = transacao.Banco;
-                        worksheet.Cells[row, 3].Value = transacao.Tipo;
-                        worksheet.Cells[row, 4].Value = transacao.NrDoc;
-                        worksheet.Cells[row, 5].Value = transacao.Data;
-                        worksheet.Cells[row, 6].Value = transacao.Valor;
-                        worksheet.Cells[row, 7].Value = transacao.Descricao;
-                        worksheet.Cells[row, 8].Value = transacao.Categoria;
-                        worksheet.Cells[row, 9].Value = transacao.DataFechamento;
-                        worksheet.Cells[row, 10].Value = transacao.DataVencimento;
+                        col = 1;
+                        worksheet.Cells[row, col++].Value = transacao.NrBco;
+                        worksheet.Cells[row, col++].Value = transacao.Banco;
+                        worksheet.Cells[row, col++].Value = transacao.Tipo;
+                        worksheet.Cells[row, col++].Value = transacao.NrDoc;
+                        worksheet.Cells[row, col++].Value = transacao.Data;
+                        worksheet.Cells[row, col++].Value = transacao.Valor;
+                        worksheet.Cells[row, col++].Value = transacao.Descricao;
+                        worksheet.Cells[row, col++].Value = transacao.Grupo;
+                        worksheet.Cells[row, col++].Value = transacao.Categoria;
+                        worksheet.Cells[row, col++].Value = transacao.DataFechamento;
+                        worksheet.Cells[row, col++].Value = transacao.DataVencimento;
                         row++;
                     }
                 }
@@ -123,7 +141,7 @@ namespace cnslOFXtoXML.controller
                 package.Save();
             }
 
-            Console.WriteLine("Arquivo do Excel criado com sucesso!");
+            Console.WriteLine($"Arquivo: {filePath} criado com sucesso!");
         }
     }
 }

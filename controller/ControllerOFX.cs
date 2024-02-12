@@ -1,4 +1,11 @@
-﻿using System.Text.RegularExpressions;
+﻿// <summary>
+/// Classe Controller para modelo de arquivo OFX e conversão para XML.
+/// </summary>
+/// <author>Flavio Alves</author>
+/// <created>2024-02-12</created>
+/// <version>1.0</version>
+
+using System.Text.RegularExpressions;
 using System.Text;
 using System.Xml.Serialization;
 using cnslOFXtoXML.models;
@@ -48,7 +55,7 @@ namespace cnslOFXtoXML
         {
             if (!File.Exists(arquivoOFX))
             {
-                Console.WriteLine("O arquivo OFX especificado não existe.");
+                Console.WriteLine($"Arquivo: {arquivoOFX} não existe.");
                 return string.Empty;
             }
             try
@@ -70,12 +77,12 @@ namespace cnslOFXtoXML
                 if (File.Exists(novoArquivoXML))
                     File.Delete(novoArquivoXML);
                 File.WriteAllText(novoArquivoXML, stringBuilder.ToString());
-                Console.WriteLine("Arquivo OFX convertido com sucesso para XML: " + novoArquivoXML);
+                Console.WriteLine($"Arquivo({arquivoOFX}) OFX convertido com sucesso para XML");
                 return novoArquivoXML;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Ocorreu um erro ao converter o arquivo OFX para XML: " + ex.Message);
+                Console.WriteLine($"Ocorreu um erro ao converter o arquivo: {arquivoOFX} OFX para XML: {ex.Message}");
             }
             return string.Empty;
         }

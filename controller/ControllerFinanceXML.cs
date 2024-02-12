@@ -1,4 +1,11 @@
-﻿using cnslOFXtoXML.models;
+﻿// <summary>
+/// Classe controller para tratar o arquivo de Base XML gerado para subir sempre os novos unificados.
+/// </summary>
+/// <author>Flavio Alves</author>
+/// <created>2024-02-12</created>
+/// <version>1.0</version>
+
+using cnslOFXtoXML.models;
 using System.Xml.Serialization;
 
 namespace cnslOFXtoXML.controller
@@ -15,7 +22,7 @@ namespace cnslOFXtoXML.controller
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Ocorreu um erro ao ler o arquivo unificado: " + ex.Message);
+                Console.WriteLine("Ocorreu um erro ao ler o arquivo base unificado: " + ex.Message);
             }
             return [];
         }

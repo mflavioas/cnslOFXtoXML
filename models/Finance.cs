@@ -1,5 +1,9 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Drawing;
+﻿/// <summary>
+/// Classe modelo do arquivo financeiro final.
+/// </summary>
+/// <author>Flavio Alves</author>
+/// <created>2024-02-12</created>
+/// <version>1.0</version>
 
 namespace cnslOFXtoXML.models
 {
@@ -10,6 +14,7 @@ namespace cnslOFXtoXML.models
         public DateTime Data { get; set; }
         public double Valor { get; set; }
         public string Descricao { get; set; }
+        public string Grupo { get; set; }
         public string Categoria { get; set; }
         public string NrBco { get; set; }
         public string Banco { get; set; }

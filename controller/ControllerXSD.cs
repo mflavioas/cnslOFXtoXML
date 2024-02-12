@@ -1,4 +1,10 @@
-﻿using System.Xml;
+﻿// <summary>
+/// Classe teste para tratar padrao XSD dos arquivos OFX.
+/// </summary>
+/// <author>Flavio Alves</author>
+/// <created>2024-02-12</created>
+/// <version>1.0</version>
+using System.Xml;
 using System.Xml.Schema;
 
 namespace cnslOFXtoXML.controller
