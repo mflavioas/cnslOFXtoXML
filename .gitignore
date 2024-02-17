@@ -11,3 +11,5 @@
 /bin/Release/net8.0/publish
 /bin/Release/net8.0
 /Properties/PublishProfiles
+/LibFinance/bin/Debug/net8.0
+/LibFinance/obj
