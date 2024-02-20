@@ -6,6 +6,7 @@
 /// <version>1.0</version>
 
 using cnslOFXtoXML.models;
+using LibFinance.models;
 using System.Xml.Serialization;
 
 namespace cnslOFXtoXML.controller
@@ -45,7 +46,7 @@ namespace cnslOFXtoXML.controller
                         return categoria;
                 }
             }
-            return new Categoria { Descricao = "Indefinido", Grupo = "NDF" };
+            return new Categoria { Descricao = "Indefinido", Grupo = Constantes.C_NDF };
         }
     }
 }

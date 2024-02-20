@@ -1,52 +1,57 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Parametros>
-  <banco descricao="Santander" codigo="033" diavcto="01" tparq="XLS" ignorar="Pagamento De Fatura;Modasantony;Sonyplaystatn">
+  <fechamento dias="20;31" />
+  <banco descricao="Santander" codigo="033" diavcto="01" regexParcelado="(\d+)/(\d+)" ignorar="PAGAMENTO CARTAO CREDITO BCE;NU PAGAMENTOS SA;PAGAMENTO DE BOLETO BANCO SANTANDER;Pagamento De Fatura;Modasantony;Sonyplaystatn">
 
-    <categoria grupo="Entrada" descricao="Recebimentos" valores="PATRICIA ALMEIDA;LUDMILLA COELHO;PIX RECEBIDO;LIQUIDO DE VENCIMENTO CNPJ 003104581000108"/>
+    <categoria grupo="Entrada" descricao="Paty" valores="PIX RECEBIDO PATRICIA;260/0001/0000000041168767;TED RECEBIDA PATRICIA"/>
+    <categoria grupo="Entrada" descricao="Flavio" diateto="25" valores="LIQUIDO DE VENCIMENTO CNPJ 003104581000108"/>
+    <categoria grupo="Entrada" descricao="Vaga Garagem" valores="REGINALDO DA CONCEICAO JU"/>
     <categoria grupo="Entrada" descricao="Rendimento" valores="REMUNERACAO"/>
-    
+    <categoria grupo="Entrada" descricao="Aluguel AP" valores="LUDMILLA COELHO"/>
+    <categoria grupo="Entrada" descricao="Recb. Diversos" valores="SECR DA RECEITA FEDERAL;AUSTRIA REALTY CONSULTORI;JOAQUIM EVALBER GADELHA;Mariane Akemi"/>
+
     <categoria grupo="Investimento" descricao="Terreno" valores="INOVA TERRA"/>
-    <categoria grupo="Investimento" descricao="Apartamento" valores="MARCIO ALVES;CONDOMINIO RESIDENCIAL;HABITACAO"/>
-    
+    <categoria grupo="Investimento" descricao="Apartamento" valores="MARCIO ALVES"/>
+    <categoria grupo="Investimento" descricao="Apartamento" projetar="S" valores="CONDOMINIO RESIDENCIAL;HABITACAO"/>
+
     <categoria grupo="Basico" descricao="Mercado" valores="Panif Conf Parque;Lanchopp;CARREFOUR;COMPRE BEM;TROQUE BEM;SILDENOR SILVA PERE;Lopes;Assai;Acougue;Perfumaria;Nobreza Da Carne;Sonda;MERCAD;ATACADAO;ESSENTRIGO;IVALDO MUNIZ;Panificadora;EMPORIO;REI DAVI;ATACADO ESPERANCA;BARBOSA;PAES E DOCES;OXXO;CARREF GUARULHOS"/>
     <categoria grupo="Basico" descricao="Saude" valores="INTERMEDICA;Stella Maris;Oticavejamais;Youse Vida;Dojo"/>
-    <categoria grupo="Basico" descricao="Luz" valores="CONTA LUZ;EDP"/>
+    <categoria grupo="Basico" descricao="Luz" projetar="S" valores="CONTA LUZ;EDP"/>
     <categoria grupo="Basico" descricao="Farmacia" valores="RUAN YUN SAN COSMET;FarmaCondeLoja;MultiFarma;Boticario;Ultrafarma;Pague Menos;Raia;MIYAFARMA;DROGARIA;Amplafarma;PROMOFARMA"/>
-    <categoria grupo="Basico" descricao="Aluguel" valores="PIX ENVIADO Real imveis;Real imveis"/>
-    <categoria grupo="Basico" descricao="Agua" valores="SABESP;SANEAMENTO BASICO"/>
-    <categoria grupo="Basico" descricao="Internet" valores="CLARO;VIVO FIXO;TELEFONICA;CLARO SA;VIVO-SP"/>
+    <categoria grupo="Basico" descricao="Aluguel" projetar="S" valores="PIX ENVIADO Real imveis;Real imveis"/>
+    <categoria grupo="Basico" descricao="Agua" projetar="S" valores="SABESP;SANEAMENTO BASICO"/>
+    <categoria grupo="Basico" descricao="Internet" projetar="S" valores="CLARO;VIVO FIXO;TELEFONICA;CLARO SA;VIVO-SP"/>
     <categoria grupo="Basico" descricao="COREN" valores="CONSELHO REGIONAL DE ENFE"/>
 
     <categoria grupo="Desnecessario" descricao="Taxas" valores="Multa de atraso;Anuidade;JUROS;IOF;Máximo contratual"/>
     <categoria grupo="Desnecessario" descricao="Tabacaria" valores="Mahdi Farhat;MUHAMMUD ADNAN;Ozzlaugetabacaria;Hookah"/>
     <categoria grupo="Desnecessario" descricao="Parcelado" valores="Saldo De Fatura;Parcelamento Fatura"/>
 
-    <categoria grupo="Pagamentos" descricao="Fatura" valores="REALIZE CREDITO;PAGAMENTO CARTAO CREDITO BCE;NU PAGAMENTOS SA"/>
-    
     <categoria grupo="Secundario" descricao="Educacao" valores="M2mprimeservic;OISA TECNOLOGIA;Escola Coracao De Je;Kalunga;Colegio Vila Fatima;IUGU INSTITUICAO;INSTITUTO EDUCACION;EDVAC SERVICOS EDUCACIONA"/>
-    <categoria grupo="Secundario" descricao="PET" valores="Pet Shop;PETZ;Cobasi;Petshopdoamigao;Avicolaoliveira;RACAO PET DOG;ESQUILOS;AmigaoDogs;ClinicaVetVida;PIX ENVIADO MARIA JESSICA"/>
-    <categoria grupo="Secundario" descricao="Carro" valores="IMPERADOR DAS PECAS;Posto 22;Mecanica;O Chefao;POSTO.2634;IPVA-CANAIS;POSTO DE COMBUSTIVE;Tamoios;Ecopista;TAPECARIA ESTEVAM;GST ESTETICA AUTOMO;Posto Chama;Combustiveis;Youse Auto;Youse Youse;Petrodutra;Autopostomauiltda;Drive Guarulhos;AUTO POSTO;LIDER PARKING;VIAOESTE;CONECTCAR;ESTACIONAMEN;AUTOMOTIVO;PORTO SEGURO CARTOES;RODOANEL;PARK;Autopostovila"/>
-    <categoria grupo="Secundario" descricao="Evandro" valores="PIX ENVIADO Anderson Alves;Anderson Alves"/>
-    <categoria grupo="Secundario" descricao="Mesada" valores="PIX ENVIADO SOFIA;SOFIA ALVES;PIX ENVIADO Patricia;Patricia de Almeida"/>
-    
+    <categoria grupo="Secundario" descricao="PET" projetar="S" valores="Pet Shop;PETZ;Cobasi;Petshopdoamigao;Avicolaoliveira;RACAO PET DOG;ESQUILOS;AmigaoDogs;ClinicaVetVida;PIX ENVIADO MARIA JESSICA"/>
+    <categoria grupo="Secundario" descricao="Carro" projetar="S" valores="IMPERADOR DAS PECAS;Posto 22;Mecanica;O Chefao;POSTO.2634;IPVA-CANAIS;POSTO DE COMBUSTIVE;Tamoios;Ecopista;TAPECARIA ESTEVAM;GST ESTETICA AUTOMO;Posto Chama;Combustiveis;Youse Auto;Youse Youse;Petrodutra;Autopostomauiltda;Drive Guarulhos;AUTO POSTO;LIDER PARKING;VIAOESTE;CONECTCAR;ESTACIONAMEN;AUTOMOTIVO;PORTO SEGURO CARTOES;RODOANEL;PARK;Autopostovila"/>
+    <categoria grupo="Secundario" descricao="Evandro" projetar="S" valores="PIX ENVIADO Anderson Alves;Anderson Alves"/>
+    <categoria grupo="Secundario" descricao="Mesada" projetar="S" valores="PIX ENVIADO SOFIA;SOFIA ALVES;PIX ENVIADO Patricia;Patricia de Almeida"/>
+
+    <categoria grupo="Controlavel" descricao="Fatura Renner" valores="REALIZE CREDITO"/>
     <categoria grupo="Controlavel" descricao="Guloseimas" valores="Dominos;Macomerciodegas;BOM BAIANO;IFOOD;NANYTAPIOCAEAC;101coxinhas;Burger King;PIZZARIA;Churrosdaline;CAFETERIA PEDACO"/>
     <categoria grupo="Controlavel" descricao="Familia" valores="Karaokeprofis;Martiniano;Samsung;Alipaybrasil;Telma Fernanda;Af Guarulhos;Ec *Maria;Delu Cabeleireiros;Lojatentacao;Fly Shopping;Hmnfahxnfs;Shopee;Decolar;Shein;Iron Hamburgue;Brunadealmeidafer;SESC GUARULHOS;PONTO GARDEN;CHOCOLATE COM PIMEN;Sheinbr;Torra Torra;Aliexpress;Trocafone;Vans Outlet;Puma Sports;LOJA DO MICRO"/>
-    <categoria grupo="Controlavel" descricao="Assinaturas" valores="Amazon Digital;Amazon Prime Canais;Amazon Digital Br;Loja Online Claro;Youtubepremium;Disney Plus;Helphbomaxcom;Apple;Iza Seguros;Vivo Easy;Conta Vivo;Google Play Pass;NETFLIX"/>
+    <categoria grupo="Controlavel" descricao="Assinaturas" projetar="S" valores="Amazon Digital;Amazon Prime Canais;Amazon Digital Br;Loja Online Claro;Youtubepremium;Disney Plus;Helphbomaxcom;Apple;Iza Seguros;Vivo Easy;Conta Vivo;Google Play Pass;NETFLIX"/>
     <categoria grupo="Controlavel" descricao="Transporte" valores="99app;UBER .TRI"/>
     <categoria grupo="Controlavel" descricao="Presentes" valores="Kabum;Bijuterias;Bodypie;Ppro *Microsoft;Presentes;Brinquedos;Ri Happy;Steam;Parakids;Rpgmaisbarato"/>
     <categoria grupo="Controlavel" descricao="Casa" valores="Amazon Br;Joli;Rafael Rodrigues;Grc Faria Lima;Sendas Distribuidora;Amazon Marketplace;TOTAL GARDEN;Mkestofadose;Chaveiroramos;Madeiramadei;Joli Materiais;Deposito Cardoso;Mobly;Magazineluiz;Leroy Merlin;Eletrica Takei;Anderson Rod"/>
-    
+
   </banco>
-  <banco descricao="Nubank" codigo="260" diavcto="20" tparq="OFX" ignorar="Pagamento recebido;Saldo em atraso;Crédito de atraso">
-    
+  <banco descricao="Nubank" codigo="260" diavcto="20" regexParcelado="(\d+)/(\d+)" ignorar="Pagamento recebido;Saldo em atraso;Crédito de atraso">
+                                                                      
     <categoria grupo="Terceiros" descricao="Fatima" valores="Autopostovila;Marcos Fabio;Brunabeatriz;Farolcesardoces;Miyafarma;Brunadealmeidafer;Sonda;Textil;Priscilarodrigues;Kyoto;Mariamariaes;Andre Dias;Antoniomarcosproe;Sheinbr;Casas Bahia;Supermercado;Torra Torra;Hokage;Auto Posto;99app;Dokdespachan;Korsakasstudio;Dm Tecidos;Morzani;Joao Restaurante"/>
-    
+
     <categoria grupo="Desnecessario" descricao="Taxas" valores="Multa de atraso;Anuidade;JUROS;IOF;Máximo contratual"/>
-    
+
     <categoria grupo="Controlavel" descricao="Assinaturas" valores="Youtubepremium;Amazon;Google Play Pass;Vivo;Apple;Iza Seguros"/>
     <categoria grupo="Controlavel" descricao="Familia" valores="Ingresso.Com;Telha Norte;Airbnb;Aliexpress;Tamoios;Ecopista;Trocafone"/>
     <categoria grupo="Controlavel" descricao="Presentes" valores="Vans Outlet;Puma Sports"/>
-    
+
     <categoria grupo="Basico" descricao="Mercado" valores="Essentrigo;Mercado"/>
   </banco>
 </Parametros>

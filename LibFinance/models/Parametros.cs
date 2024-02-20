@@ -20,6 +20,12 @@ namespace cnslOFXtoXML.models
 
         [XmlAttribute(AttributeName = "valores")]
         public string Valores { get; set; }
+
+        [XmlAttribute(AttributeName = "diateto")]
+        public int DiaTeto { get; set; }
+
+        [XmlAttribute(AttributeName = "projetar")]
+        public string Projetar { get; set; }
     }
 
     [XmlRoot(ElementName = "banco")]
@@ -31,15 +37,25 @@ namespace cnslOFXtoXML.models
 
         [XmlAttribute(AttributeName = "codigo")]
         public string Codigo { get; set; }
-        
+
         [XmlAttribute(AttributeName = "diavcto")]
         public int DiaVencimento { get; set; }
 
         [XmlAttribute(AttributeName = "ignorar")]
         public string Ignorar { get; set; }
 
+        [XmlAttribute(AttributeName = "regexParcelado")]
+        public string RegexParcelado { get; set; }
+
         [XmlElement(ElementName = "categoria")]
         public List<Categoria> Categorias { get; set; }
+    }
+
+    [XmlRoot(ElementName = "fechamento")]
+    public class Fechamento
+    {
+        [XmlAttribute(AttributeName = "dias")]
+        public string Dias { get; set; }
     }
 
     [XmlRoot(ElementName = "Parametros")]
@@ -47,6 +63,9 @@ namespace cnslOFXtoXML.models
     {
         [XmlElement(ElementName = "banco")]
         public List<Banco> Bancos { get; set; }
+        
+        [XmlElement(ElementName = "fechamento")]
+        public Fechamento Fechamento { get; set; }
     }
 
 

@@ -6,6 +6,7 @@
 /// <version>1.0</version>
 
 using cnslOFXtoXML.models;
+using LibFinance.models;
 using OfficeOpenXml;
 
 namespace cnslOFXtoXML.controller
@@ -47,7 +48,6 @@ namespace cnslOFXtoXML.controller
                             }
                             if (Convert.ToDateTime(sheet.Cells[row, 1].Value) > DateTime.Now.AddYears(-5) && !string.IsNullOrWhiteSpace(descricao))
                             {
-                                Categoria categoria = ConfigParametros.RetornaCategoria(descricao, banco.Codigo);
                                 finance.Transacoes.Add(new()
                                 {
                                     NrBco = banco.Codigo,
@@ -57,8 +57,6 @@ namespace cnslOFXtoXML.controller
                                     Data = Convert.ToDateTime(sheet.Cells[row, 1].Value),
                                     Descricao = descricao,
                                     Valor = Convert.ToDouble(vlr) * -1,
-                                    Grupo = categoria.Grupo,
-                                    Categoria = categoria.Descricao
                                 });
                             }
                         }
@@ -96,7 +94,7 @@ namespace cnslOFXtoXML.controller
                 return;
             }
 
-            string filePath = Path.Combine(DirOutput, $"Financeiro_{DateTime.Now:yyyyMMdd_HHmmfff}.xlsx");
+            string filePath = Path.Combine(DirOutput, $"Financeiro_{DateTime.Now.ToString(Constantes.C_FRMT_DATA)}.xlsx");
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using (ExcelPackage package = new(new FileInfo(filePath)))
             {
@@ -115,6 +113,11 @@ namespace cnslOFXtoXML.controller
                 worksheet.Cells[row, col++].Value = "Categoria";
                 worksheet.Cells[row, col++].Value = "Data Fechamento";
                 worksheet.Cells[row, col++].Value = "Data Vencimento";
+                worksheet.Cells[row, col++].Value = "Projeção";
+                worksheet.Cells[row, col++].Value = "Nr Parcela";
+                worksheet.Cells[row, col++].Value = "Qtd Parcelas";
+                worksheet.Cells[row, col++].Value = "Qtd Restante";
+                worksheet.Cells[row, col++].Value = "Dia Fechamento Caixa";
 
                 row++;
                 // Preenche os dados detalhe
@@ -134,6 +137,11 @@ namespace cnslOFXtoXML.controller
                         worksheet.Cells[row, col++].Value = transacao.Categoria;
                         worksheet.Cells[row, col++].Value = transacao.DataFechamento;
                         worksheet.Cells[row, col++].Value = transacao.DataVencimento;
+                        worksheet.Cells[row, col++].Value = transacao.Projecao;
+                        worksheet.Cells[row, col++].Value = transacao.NrParcela;
+                        worksheet.Cells[row, col++].Value = transacao.QtdParcelas;
+                        worksheet.Cells[row, col++].Value = transacao.QtdParcelasFuturas;
+                        worksheet.Cells[row, col++].Value = transacao.DiaDechamentoCaixa;
                         row++;
                     }
                 }

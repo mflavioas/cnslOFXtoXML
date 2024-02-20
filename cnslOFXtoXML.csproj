@@ -8,18 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EPPlus" Version="7.0.8" />
-    <PackageReference Include="System.IO.FileSystem" Version="4.3.0" />
-    <PackageReference Include="System.Xml.ReaderWriter" Version="4.3.1" />
+    <Compile Remove="LibFinance\**" />
+    <EmbeddedResource Remove="LibFinance\**" />
+    <None Remove="LibFinance\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="config\Parametros.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="config\config.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <ProjectReference Include="LibFinance\LibFinance.csproj" />
   </ItemGroup>
 
 </Project>
